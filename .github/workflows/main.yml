@@ -1,0 +1,22 @@
+name: Azure PowerShell VM Automation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-powershell-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install PowerShell
+      uses: azure/setup-powershell@v1
+      with:
+        version: '7.2.0'
+
+    - name: Run PowerShell script
+      run: pwsh ./create-vm.ps1
